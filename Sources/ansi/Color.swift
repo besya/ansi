@@ -37,6 +37,10 @@ public enum Color: Sendable {
             return [ColorMode.bit24.rawValue, r, g, b]
         }
     }
+    
+    public var parameterize: [String] {
+        asArray.flatMap { [String($0), ASCII.semicolon.string] }.dropLast()
+    }
 
     public static func fromHex(_ hex: String) -> Self {
         let (r, g, b) = hexToRgb(hex)
