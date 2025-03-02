@@ -1,0 +1,33 @@
+{
+  "originHash" : "8633452e109536759b03e87230472c022b8424c6d7002f049427463ba0d89053",
+  "pins" : [
+    {
+      "identity" : "ascii",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/besya/ascii.git",
+      "state" : {
+        "revision" : "f44cdb56af95bab1161366945b138decd3f7d1c2",
+        "version" : "1.1.0"
+      }
+    },
+    {
+      "identity" : "swift-algorithms",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-algorithms",
+      "state" : {
+        "revision" : "87e50f483c54e6efd60e885f7f5aa946cee68023",
+        "version" : "1.2.1"
+      }
+    },
+    {
+      "identity" : "swift-numerics",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-numerics.git",
+      "state" : {
+        "revision" : "0a5bc04095a675662cf24757cc0640aa2204253b",
+        "version" : "1.0.2"
+      }
+    }
+  ],
+  "version" : 3
+}
