@@ -8,22 +8,22 @@
 import ASCII
 
 public enum ControlSequence {
-    case cursorUp(_ n: Int = 1)
-    case cursorDown(_ n: Int = 1)
-    case cursorForward(_ n: Int = 1)
-    case cursorBack(_ n: Int = 1)
-    case cursorNextLine(_ n: Int = 1)
-    case cursorPreviousLine(_ n: Int = 1)
-    case cursorHorizontalAbsolute(_ n: Int = 1)
+    case cursorUp(_ cell: Int = 1)
+    case cursorDown(_ cell: Int = 1)
+    case cursorForward(_ cell: Int = 1)
+    case cursorBack(_ cell: Int = 1)
+    case cursorNextLine(_ line: Int = 1)
+    case cursorPreviousLine(_ line: Int = 1)
+    case cursorHorizontalAbsolute(_ cell: Int = 1)
     case cursorPosition(_ row: Int = 1, _ column: Int = 1)
 
     case eraseInDisplay(EraseInDisplay = .fromCursorToEndOfScreen)
     case eraseInLine(EraseInLine = .fromCursorToEndOfLine)
 
-    case scrollUp(_ n: Int = 1)
-    case scrollDown(_ n: Int = 1)
+    case scrollUp(_ line: Int = 1)
+    case scrollDown(_ line: Int = 1)
 
-    case horizontalVerticalPosition(_ n: Int = 1, _ m: Int = 1)
+    case horizontalVerticalPosition(_ row: Int = 1, _ column: Int = 1)
 
     case selectGraphicRendition([SelectGraphicRendition])
 }
@@ -53,16 +53,16 @@ extension ControlSequence: Terminatable {
 extension ControlSequence: Parameterizable {
     var parameters: Parameters {
         switch self {
-        case .cursorUp(let n),
-            .cursorDown(let n),
-            .cursorForward(let n),
-            .cursorBack(let n),
-            .cursorNextLine(let n),
-            .cursorPreviousLine(let n),
-            .cursorHorizontalAbsolute(let n),
-            .scrollUp(let n),
-            .scrollDown(let n):
-            Parameters(n)
+        case .cursorUp(let cell),
+            .cursorDown(let cell),
+            .cursorForward(let cell),
+            .cursorBack(let cell),
+            .cursorNextLine(let cell),
+            .cursorPreviousLine(let cell),
+            .cursorHorizontalAbsolute(let cell),
+            .scrollUp(let cell),
+            .scrollDown(let cell):
+            Parameters(cell)
         case let .cursorPosition(row, column),
             let .horizontalVerticalPosition(row, column):
             Parameters(row, column)

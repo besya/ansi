@@ -9,7 +9,7 @@ import ASCII
 
 public struct ANSISequence: ExpressibleByArrayLiteral, ExpressibleByIntegerLiteral, Equatable {
     let sequence: [ASCII]
-    
+
     public init(_ sequence: [ASCII]) {
         self.sequence = sequence
     }
@@ -17,7 +17,7 @@ public struct ANSISequence: ExpressibleByArrayLiteral, ExpressibleByIntegerLiter
     public init(_ sequence: ASCII...) {
         self.init(sequence)
     }
-    
+
     public init(_ ascii: ASCII) {
         self.init([ascii])
     }
@@ -40,7 +40,9 @@ public struct ANSISequence: ExpressibleByArrayLiteral, ExpressibleByIntegerLiter
     }
 
     public init(_ elements: Int...) {
-        self.sequence = elements.map(String.init).flatMap { $0.map { ASCII($0)! } }
+        self.sequence = elements.map(String.init).flatMap {
+            $0.map { ASCII($0)! }
+        }
     }
 
     public init(integerLiteral element: Int) {

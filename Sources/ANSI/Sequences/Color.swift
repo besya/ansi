@@ -37,8 +37,8 @@ extension Color: Parameterizable {
     var parameters: Parameters {
         switch self {
         case let .bit8(color): Parameters([.digit5], .init(color))
-        case let .rgb(r, g, b):
-            Parameters([.digit2], .init(r), .init(g), .init(b))
+        case let .rgb(red, green, blue):
+            Parameters([.digit2], .init(red), .init(green), .init(blue))
         default: Parameters()
         }
     }
