@@ -8,7 +8,7 @@
 public enum StartOfStringCommand {}
 
 extension StartOfStringCommand: Sequential {
-    public var sequence: ANSISequence { [] }
+  public var sequence: ANSISequence { [] }
 }
 
 extension StartOfStringCommand: Sendable {}

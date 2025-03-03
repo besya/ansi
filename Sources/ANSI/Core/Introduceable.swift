@@ -6,5 +6,5 @@
 //
 
 protocol Introduceable {
-    var introducer: ANSISequence { get }
+  var introducer: ANSISequence { get }
 }

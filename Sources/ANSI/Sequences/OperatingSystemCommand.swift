@@ -8,7 +8,7 @@
 public enum OperatingSystemCommand {}
 
 extension OperatingSystemCommand: Sequential {
-    public var sequence: ANSISequence { [] }
+  public var sequence: ANSISequence { [] }
 }
 
 extension OperatingSystemCommand: Sendable {}

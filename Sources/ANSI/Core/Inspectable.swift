@@ -6,11 +6,11 @@
 //
 
 public protocol Inspectable {
-    func inspectList(as type: InspectType) -> [String]
+  func inspectList(as type: InspectType) -> [String]
 }
 
 extension Inspectable {
-    public func inspect(as type: InspectType) -> String {
-        inspectList(as: type).joined()
-    }
+  public func inspect(as type: InspectType) -> String {
+    inspectList(as: type).joined()
+  }
 }

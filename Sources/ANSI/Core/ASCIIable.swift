@@ -8,5 +8,5 @@
 import ASCII
 
 protocol ASCIIable {
-    var ascii: ASCII { get }
+  var ascii: ASCII { get }
 }

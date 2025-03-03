@@ -6,14 +6,14 @@
 //
 
 public enum InspectType {
-    case name
-    case binary
-    case controlDescription
-    case decimal
-    case escaped
-    case hexadecimal
-    case htmlEntity
-    case int
-    case octal
-    case unicode
+  case name
+  case binary
+  case controlDescription
+  case decimal
+  case escaped
+  case hexadecimal
+  case htmlEntity
+  case int
+  case octal
+  case unicode
 }

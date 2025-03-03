@@ -6,5 +6,5 @@
 //
 
 protocol Parameterizable {
-    var parameters: Parameters { get }
+  var parameters: Parameters { get }
 }

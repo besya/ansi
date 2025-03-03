@@ -8,7 +8,7 @@
 public enum PrivacyMessageCommand {}
 
 extension PrivacyMessageCommand: Sequential {
-    public var sequence: ANSISequence { [] }
+  public var sequence: ANSISequence { [] }
 }
 
 extension PrivacyMessageCommand: Sendable {}

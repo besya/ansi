@@ -8,7 +8,7 @@
 public enum ApplicationProgramCommand {}
 
 extension ApplicationProgramCommand: Sequential {
-    public var sequence: ANSISequence { [] }
+  public var sequence: ANSISequence { [] }
 }
 
 extension ApplicationProgramCommand: Sendable {}

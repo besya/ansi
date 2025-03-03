@@ -6,5 +6,5 @@
 //
 
 protocol Terminatable {
-    var terminator: ANSISequence { get }
+  var terminator: ANSISequence { get }
 }

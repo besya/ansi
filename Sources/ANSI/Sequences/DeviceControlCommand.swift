@@ -8,7 +8,7 @@
 public enum DeviceControlCommand {}
 
 extension DeviceControlCommand: Sequential {
-    public var sequence: ANSISequence { [] }
+  public var sequence: ANSISequence { [] }
 }
 
 extension DeviceControlCommand: Sendable {}
