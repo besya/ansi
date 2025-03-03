@@ -16,8 +16,7 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/besya/ascii.git", from: "1.1.0"),
-        .package(url: "https://github.com/apple/swift-algorithms", from: "1.2.0"),
-        .package(url: "https://github.com/SimplyDanny/SwiftLintPlugins", from: "0.58.2")
+        .package(url: "https://github.com/apple/swift-algorithms", from: "1.2.0")
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
@@ -27,8 +26,7 @@ let package = Package(
             dependencies: [
                 .product(name: "ASCII", package: "ASCII"),
                 .product(name: "Algorithms", package: "swift-algorithms"),
-            ],
-            plugins: [.plugin(name: "SwiftLintBuildToolPlugin", package: "SwiftLintPlugins")]
+            ]
         ),
         .testTarget(
             name: "ANSITests",
