@@ -3,47 +3,50 @@
 
 import PackageDescription
 
+#if os(Windows)
+let plugins: [Target.PluginUsage]? = nil
+#else
+let plugins: [Target.PluginUsage]? = [.plugin(name: "SwiftFormatPlugin")]
+#endif
+
+let target: Target = .target(
+  name: "ANSI",
+  dependencies: [
+    .product(name: "ASCII", package: "ASCII"),
+    .product(name: "Algorithms", package: "swift-algorithms"),
+  ],
+  plugins: plugins
+)
+
+let testTarget: Target = .testTarget(
+  name: "ANSITests",
+  dependencies: ["ANSI"]
+)
+
+#if os(Windows)
+let targets: [Target] = [target, testTarget]
+#else
+let targets: [Target] = [
+  target,
+  testTarget,
+  .plugin(
+    name: "SwiftFormatPlugin",
+    capability: .buildTool(),
+    path: "Plugins/SwiftFormatPlugin",
+    packageAccess: true
+  ),
+]
+#endif
+
 let package = Package(
   name: "ANSI",
-  platforms: [
-    .macOS(.v12)
-  ],
+  platforms: [.macOS(.v12)],
   products: [
-    // Products define the executables and libraries a package produces, making them visible to other packages.
-    .library(
-      name: "ANSI",
-      targets: ["ANSI"]
-    )
+    .library(name: "ANSI", targets: ["ANSI"])
   ],
   dependencies: [
     .package(url: "https://github.com/besya/ascii.git", from: "1.1.0"),
-    .package(
-      url: "https://github.com/apple/swift-algorithms",
-      from: "1.2.0"
-    ),
+    .package(url: "https://github.com/apple/swift-algorithms", from: "1.2.0"),
   ],
-  targets: [
-    // Targets are the basic building blocks of a package, defining a module or a test suite.
-    // Targets can depend on other targets in this package and products from dependencies.
-    .target(
-      name: "ANSI",
-      dependencies: [
-        .product(name: "ASCII", package: "ASCII"),
-        .product(name: "Algorithms", package: "swift-algorithms"),
-      ],
-      plugins: [
-        .plugin(name: "SwiftFormatPlugin")
-      ]
-    ),
-    .testTarget(
-      name: "ANSITests",
-      dependencies: ["ANSI"]
-    ),
-    .plugin(
-      name: "SwiftFormatPlugin",
-      capability: .buildTool(),
-      path: "Plugins/SwiftFormatPlugin",
-      packageAccess: true
-    ),
-  ]
+  targets: targets
 )

@@ -24,5 +24,3 @@ echo "$output" | while IFS= read -r line; do
         # echo "No match for line: $line" >&2
     fi
 done
-
-echo "Lint complete"
