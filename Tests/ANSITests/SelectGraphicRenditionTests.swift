@@ -24,7 +24,9 @@ struct SelectGraphicRenditionSuite {
 
   @Test func slowBlink() async throws { #expect(SGR.slowBlink.sequence == 5) }
 
-  @Test func rapidBlink() async throws { #expect(SGR.rapidBlink.sequence == 6) }
+  @Test func rapidBlink() async throws {
+    #expect(SGR.rapidBlink.sequence == 6)
+  }
 
   @Test func invert() async throws { #expect(SGR.invert.sequence == 7) }
 

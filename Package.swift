@@ -30,11 +30,20 @@ let package = Package(
       dependencies: [
         .product(name: "ASCII", package: "ASCII"),
         .product(name: "Algorithms", package: "swift-algorithms"),
+      ],
+      plugins: [
+        .plugin(name: "SwiftFormatPlugin")
       ]
     ),
     .testTarget(
       name: "ANSITests",
       dependencies: ["ANSI"]
+    ),
+    .plugin(
+      name: "SwiftFormatPlugin",
+      capability: .buildTool(),
+      path: "Plugins/SwiftFormatPlugin",
+      packageAccess: true
     ),
   ]
 )
