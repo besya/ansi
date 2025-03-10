@@ -24,7 +24,7 @@ let package = Package(
     // name, platforms, products, etc.
     dependencies: [
         // other dependencies
-        .package(url: "https://github.com/besya/ansi.git", from: "0.0.1-dev"),
+        .package(url: "https://github.com/besya/ansi.git", branch: "main"),
     ],
     targets: [
         .target(name: "<library>", dependencies: [

@@ -1,126 +1,132 @@
-////
-////  ControlSequenceTests.swift
-////  ansi
-////
-////  Created by Ihar Biaspalau on 28.01.25.
-////
 //
-//import Testing
-//import ANSI
+//  ControlSequenceTests.swift
+//  ansi
 //
-//@Suite struct ControlSequenceTests {
-//    let CSI = "\u{001B}[" // Control Sequence Introducer
-//    static let nOptions = 1...10
+//  Created by Ihar Biaspalau on 28.01.25.
 //
-//    @Test func cursorUp() async throws {
-//        #expect(CursorUp().string == "\(CSI)1A")
-//    }
-//
-//    @Test(arguments: nOptions) func cursorUp(n: Int) async throws {
-//        #expect(CursorUp(n).string == "\(CSI)\(n)A")
-//    }
-//
-//    @Test func cursorDown() async throws {
-//        #expect(CursorDown().string == "\(CSI)1B")
-//    }
-//
-//    @Test(arguments: nOptions) func cursorDown(n: Int) async throws {
-//        #expect(CursorDown(n).string == "\(CSI)\(n)B")
-//    }
-//
-//    @Test func cursorForward() async throws {
-//        #expect(CursorForward().string == "\(CSI)1C")
-//    }
-//
-//    @Test(arguments: nOptions) func cursorForward(n: Int) async throws {
-//        #expect(CursorForward(n).string == "\(CSI)\(n)C")
-//    }
-//
-//    @Test func cursorBack() async throws {
-//        #expect(CursorBackward().string == "\(CSI)1D")
-//    }
-//
-//    @Test(arguments: nOptions) func cursorBack(n: Int) async throws {
-//        #expect(CursorBackward(n).string == "\(CSI)\(n)D")
-//    }
-//
-//    @Test func cursorNextLine() async throws {
-//        #expect(CursorNextLine().string == "\(CSI)1E")
-//    }
-//
-//    @Test(arguments: nOptions) func cursorNextLine(n: Int) async throws {
-//        #expect(CursorNextLine(n).string == "\(CSI)\(n)E")
-//    }
-//
-//    @Test func cursorPreviousLine() async throws {
-//        #expect(CursorPreviousLine().string == "\(CSI)1F")
-//    }
-//
-//    @Test(arguments: nOptions) func cursorPreviousLine(n: Int) async throws {
-//        #expect(CursorPreviousLine(n).string == "\(CSI)\(n)F")
-//    }
-//
-//    @Test func cursorHorizontalAbsolute() async throws {
-//        #expect(CursorHorizontalAbsolute().string == "\(CSI)1G")
-//    }
-//
-//    @Test(arguments: nOptions) func cursorHorizontalAbsolute(n: Int) async throws {
-//        #expect(CursorHorizontalAbsolute(n).string == "\(CSI)\(n)G")
-//    }
-//
-//    @Test func cursorPosition() async throws {
-//        #expect(CursorPosition().string == "\(CSI)1;1H")
-//    }
-//
-//    @Test(arguments: nOptions) func cursorPosition(n: Int) async throws {
-//        #expect(CursorPosition(n, n).string == "\(CSI)\(n);\(n)H")
-//    }
-//
-//    @Test func eraseInDisplay() async throws {
-//        #expect(EraseInDisplay().string == "\(CSI)0J")
-//    }
-//
-//    @Test(arguments: nOptions) func eraseInDisplay(n: Int) async throws {
-//        #expect(EraseInDisplay(n).string == "\(CSI)\(n)J")
-//    }
-//
-//    @Test func eraseInLine() async throws {
-//        #expect(EraseInLine().string == "\(CSI)0K")
-//    }
-//
-//    @Test(arguments: nOptions) func eraseInLine(n: Int) async throws {
-//        #expect(EraseInLine(n).string == "\(CSI)\(n)K")
-//    }
-//
-//    @Test func scrollUp() async throws {
-//        #expect(ScrollUp().string == "\(CSI)1S")
-//    }
-//
-//    @Test(arguments: nOptions) func scrollUp(n: Int) async throws {
-//        #expect(ScrollUp(n).string == "\(CSI)\(n)S")
-//    }
-//
-//    @Test func scrollDown() async throws {
-//        #expect(ScrollDown().string == "\(CSI)1T")
-//    }
-//
-//    @Test(arguments: nOptions) func scrollDown(n: Int) async throws {
-//        #expect(ScrollDown(n).string == "\(CSI)\(n)T")
-//    }
-//
-//    @Test func horizontalVerticalPosition() async throws {
-//        #expect(HorizontalVerticalPosition().string == "\(CSI)1;1f")
-//    }
-//
-//    @Test(arguments: nOptions) func horizontalVerticalPosition(n: Int) async throws {
-//        #expect(HorizontalVerticalPosition(n, n).string == "\(CSI)\(n);\(n)f")
-//    }
-//
-//    @Test func selectGraphicRendition() async throws {
-//        #expect(SelectGraphicRendition(.defaultFont).string == "\(CSI)10m")
-//    }
-//
-//    @Test(arguments: nOptions) func selectGraphicRendition(n: Int) async throws {
-//        #expect(SelectGraphicRendition(.setForegroundColor, parameters: [String(n)]).string == "\(CSI)38;\(n)m")
-//    }
-//}
+
+import ANSI
+import ASCII
+import Testing
+
+@Suite("Control Sequences")
+struct ControlSequenceSuite {
+  static let intRange = (0...10)
+
+  func escapeSequence(_ command: ControlSequenceCommand) -> EscapeSequence {
+    .controlSequence(command)
+  }
+
+  func sequence(_ command: ControlSequenceCommand) -> ANSISequence {
+    escapeSequence(command).sequence
+  }
+
+  func inspect(_ command: ControlSequenceCommand) -> String {
+    escapeSequence(command).inspect(as: .escaped)
+  }
+
+  @Test(arguments: intRange)
+  func cursorUp(_ cell: Int) async throws {
+    #expect(inspect(.cursorUp(cell)) == "\\x1b[\(cell)A")
+  }
+
+  @Test(arguments: intRange)
+  func cursorDown(_ cell: Int) async throws {
+    #expect(inspect(.cursorDown(cell)) == "\\x1b[\(cell)B")
+  }
+
+  @Test(arguments: intRange)
+  func cursorForward(_ cell: Int) async throws {
+    #expect(inspect(.cursorForward(cell)) == "\\x1b[\(cell)C")
+  }
+
+  @Test(arguments: intRange)
+  func cursorBack(_ cell: Int) async throws {
+    #expect(inspect(.cursorBack(cell)) == "\\x1b[\(cell)D")
+  }
+
+  @Test(arguments: intRange)
+  func cursorNextLine(_ cell: Int) async throws {
+    #expect(inspect(.cursorNextLine(cell)) == "\\x1b[\(cell)E")
+  }
+
+  @Test(arguments: intRange)
+  func cursorPreviousLine(_ cell: Int) async throws {
+    #expect(inspect(.cursorPreviousLine(cell)) == "\\x1b[\(cell)F")
+  }
+
+  @Test(arguments: intRange)
+  func cursorHorizontalAbsolute(_ cell: Int) async throws {
+    #expect(inspect(.cursorHorizontalAbsolute(cell)) == "\\x1b[\(cell)G")
+  }
+
+  @Test(arguments: intRange)
+  func cursorPosition(_ row: Int) async throws {
+    #expect(inspect(.cursorPosition(row, row)) == "\\x1b[\(row);\(row)H")
+  }
+
+  @Test(arguments: [
+    EraseInDisplay.fromCursorToEndOfScreen: ASCII.digit0,
+    .fromCursorToBeginningOfScreen: .digit1,
+    .entireScreen: .digit2,
+    .entireScreenAndDeleteAllLines: .digit3,
+  ])
+  func eraseInDisplay(_ type: EraseInDisplay, _ ascii: ASCII) async throws {
+    #expect(
+      inspect(.eraseInDisplay(type)) == "\\x1b[\(ascii.unicode)J"
+    )
+  }
+
+  @Test(arguments: [
+    EraseInLine.fromCursorToEndOfLine: ASCII.digit0,
+    .fromCursorToBeginningOfLine: .digit1,
+    .entireLine: .digit2,
+  ])
+  func eraseInLine(_ type: EraseInLine, _ ascii: ASCII) async throws {
+    #expect(
+      inspect(.eraseInLine(type)) == "\\x1b[\(ascii.unicode)K"
+    )
+  }
+
+  @Test(arguments: intRange)
+  func scrollUp(_ cell: Int) async throws {
+    #expect(inspect(.scrollUp(cell)) == "\\x1b[\(cell)S")
+  }
+
+  @Test(arguments: intRange)
+  func scrollDown(_ cell: Int) async throws {
+    #expect(inspect(.scrollDown(cell)) == "\\x1b[\(cell)T")
+  }
+
+  @Test(arguments: intRange)
+  func horizontalVerticalPosition(_ row: Int) async throws {
+    #expect(
+      inspect(.horizontalVerticalPosition(row, row)) == "\\x1b[\(row);\(row)f"
+    )
+  }
+
+  @Test func selectGraphicRendition() async throws {
+    #expect(inspect(.selectGraphicRendition([.bold])) == "\\x1b[1m")
+  }
+
+  @Test func deviceStatusReport() async throws {
+    #expect(inspect(.deviceStatusReport) == "\\x1b[6n")
+  }
+
+  @Test func saveCursorPosition() async throws {
+    #expect(inspect(.saveCursorPosition) == "\\x1b[s")
+  }
+
+  @Test func restoreCursorPosition() async throws {
+    #expect(inspect(.restoreCursorPosition) == "\\x1b[u")
+  }
+
+  @Test func showCursor() async throws {
+    #expect(inspect(.showCursor) == "\\x1b[?25h")
+  }
+
+  @Test func hideCursor() async throws {
+    #expect(inspect(.hideCursor) == "\\x1b[?25l")
+  }
+
+}

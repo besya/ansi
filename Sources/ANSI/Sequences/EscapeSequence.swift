@@ -7,15 +7,25 @@
 
 import ASCII
 
+/// Escape Sequence builder.
 public enum EscapeSequence {
+  /// SS2
   case singleShiftTwo
+  /// SS3
   case singleShiftThree
+  /// DCS
   case deviceControl(DeviceControlCommand)
-  case controlSequence(ControlSequence)
+  /// CSI
+  case controlSequence(ControlSequenceCommand)
+  /// ST
   case stringTerminator
+  /// OSC
   case operatingSystemCommand(OperatingSystemCommand)
+  /// SOS
   case startOfString(StartOfStringCommand)
+  /// PM
   case privacyMessage(PrivacyMessageCommand)
+  /// APC
   case applicationProgramCommand(ApplicationProgramCommand)
 }
 

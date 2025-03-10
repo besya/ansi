@@ -1,5 +1,5 @@
 //
-//  ControlSequence.swift
+//  ControlSequenceCommand.swift
 //  ANSI
 //
 //  Created by Ihar Biaspalau on 28.02.25.
@@ -7,7 +7,7 @@
 
 import ASCII
 
-public enum ControlSequence {
+public enum ControlSequenceCommand {
   case cursorUp(_ cell: Int = 1)
   case cursorDown(_ cell: Int = 1)
   case cursorForward(_ cell: Int = 1)
@@ -26,9 +26,16 @@ public enum ControlSequence {
   case horizontalVerticalPosition(_ row: Int = 1, _ column: Int = 1)
 
   case selectGraphicRendition([SelectGraphicRendition])
+  case deviceStatusReport
+
+  // Private sequences
+  case saveCursorPosition
+  case restoreCursorPosition
+  case showCursor
+  case hideCursor
 }
 
-extension ControlSequence: Terminatable {
+extension ControlSequenceCommand: Terminatable {
   var terminatorByte: ASCII {
     switch self {
     case .cursorUp: .A
@@ -45,12 +52,17 @@ extension ControlSequence: Terminatable {
     case .scrollDown: .T
     case .horizontalVerticalPosition: .f
     case .selectGraphicRendition: .m
+    case .deviceStatusReport: .n
+    case .saveCursorPosition: .s
+    case .restoreCursorPosition: .u
+    case .showCursor: .h
+    case .hideCursor: .l
     }
   }
   var terminator: ANSISequence { [terminatorByte] }
 }
 
-extension ControlSequence: Parameterizable {
+extension ControlSequenceCommand: Parameterizable {
   var parameters: Parameters {
     switch self {
     case .cursorUp(let cell),
@@ -72,12 +84,16 @@ extension ControlSequence: Parameterizable {
       Parameters(eraseInLine.ascii)
     case .selectGraphicRendition(let selectGraphicRenditions):
       Parameters(selectGraphicRenditions)
+    case .deviceStatusReport: Parameters(.digit6)
+    case .saveCursorPosition, .restoreCursorPosition: Parameters()
+    case .showCursor, .hideCursor:
+      Parameters(ANSISequence([.questionMark, .digit2, .digit5]))
     }
   }
 }
 
-extension ControlSequence: Sequential {
+extension ControlSequenceCommand: Sequential {
   public var sequence: ANSISequence { parameters.sequence }
 }
 
-extension ControlSequence: Sendable {}
+extension ControlSequenceCommand: Sendable {}
