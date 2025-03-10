@@ -57,7 +57,7 @@ extension ANSISequence {
 }
 
 extension ANSISequence {
-  static func + (lhs: Self, rhs: Self) -> Self {
+  public static func + (lhs: Self, rhs: Self) -> Self {
     Self(lhs.sequence + rhs.sequence)
   }
 }
