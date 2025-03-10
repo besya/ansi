@@ -18,7 +18,7 @@ let package = Package(
       dependencies: [
         .product(name: "ASCII", package: "ASCII"),
         .product(name: "Algorithms", package: "swift-algorithms"),
-      ],
+      ]
     ),
     .testTarget(
       name: "ANSITests",
