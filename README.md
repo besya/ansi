@@ -24,12 +24,12 @@ let package = Package(
     // name, platforms, products, etc.
     dependencies: [
         // other dependencies
-        .package(url: "https://github.com/besya/ansi.git", branch: "main"),
+        .package(url: "https://github.com/swiftconsole/ansi.git", branch: "main"),
     ],
     targets: [
         .target(name: "<library>", dependencies: [
             // other dependencies
-            .product(name: "ANSI", package: "ANSI"),
+            .product(name: "ANSI", package: "ansi"),
         ]),
         // other targets
     ]

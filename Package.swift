@@ -4,19 +4,19 @@
 import PackageDescription
 
 let package = Package(
-  name: "ANSI",
+  name: "ansi",
   products: [
     .library(name: "ANSI", targets: ["ANSI"])
   ],
   dependencies: [
-    .package(url: "https://github.com/besya/ascii.git", from: "1.1.0"),
+    .package(url: "https://github.com/swiftconsole/ascii.git", from: "1.1.0"),
     .package(url: "https://github.com/apple/swift-algorithms", from: "1.2.0"),
   ],
   targets: [
     .target(
       name: "ANSI",
       dependencies: [
-        .product(name: "ASCII", package: "ASCII"),
+        .product(name: "ASCII", package: "ascii"),
         .product(name: "Algorithms", package: "swift-algorithms"),
       ]
     ),
