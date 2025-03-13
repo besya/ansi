@@ -9,7 +9,7 @@ let package = Package(
     .library(name: "ANSI", targets: ["ANSI"])
   ],
   dependencies: [
-    .package(url: "https://github.com/swiftconsole/ascii.git", from: "1.1.0"),
+    .package(url: "https://github.com/swiftconsole/ascii.git", from: "1.2.0"),
     .package(url: "https://github.com/apple/swift-algorithms", from: "1.2.0"),
   ],
   targets: [
