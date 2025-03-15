@@ -9,5 +9,7 @@ Licensed under Apache License v2.0.
 See https://github.com/swiftconsole/ansi/blob/main/LICENSE.txt for details.
 
 This project includes code from:
+- ascii (https://github.com/swiftconsole/ascii)
+  * License: Apache License 2.0 (https://github.com/swiftconsole/ascii/LICENSE.txt)
 - swift-algorithms (https://github.com/apple/swift-algorithms)
   * License: Apache License 2.0 with Runtime Library Exception (https://github.com/apple/swift-algorithms/LICENSE.txt)
