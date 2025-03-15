@@ -1,9 +1,16 @@
+//===----------------------------------------------------------------------===//
 //
-//  EraseInDisplay.swift
-//  ANSI
+// This source file is part of the ANSI open source project
 //
-//  Created by Ihar Biaspalau on 1.03.25.
+// Copyright (c) 2025 Ihar Biaspalau
+// Licensed under Apache License v2.0
 //
+// See LICENSE.txt for license information
+// See CONTRIBUTORS.md for the list of ANSI project authors
+//
+// SPDX-License-Identifier: Apache-2.0
+//
+//===----------------------------------------------------------------------===//
 
 import ASCII
 
