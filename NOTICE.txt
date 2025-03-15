@@ -1,0 +1,13 @@
+The ANSI Project
+=================
+
+Homepage: https://github.com/swiftconsole/ansi
+
+Copyright (c) 2025 Ihar Biaspalau
+
+Licensed under Apache License v2.0.
+See https://github.com/swiftconsole/ansi/blob/main/LICENSE.txt for details.
+
+This project includes code from:
+- swift-algorithms (https://github.com/apple/swift-algorithms)
+  * License: Apache License 2.0 with Runtime Library Exception (https://github.com/apple/swift-algorithms/LICENSE.txt)

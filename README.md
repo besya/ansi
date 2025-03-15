@@ -1,6 +1,8 @@
-[![Status](https://img.shields.io/badge/status-WIP-red)](https://github.com/besya/ansi)
 
 # ANSI
+[![Status](https://img.shields.io/badge/status-WIP-red)](https://github.com/besya/ansi)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)
+
 **NOTICE: This library is under active development and is not ready for use in production or any other environment. Use at your own risk.**
 
 Current version: 0.0.1-dev (unstable, experimental)
@@ -141,9 +143,10 @@ print(myAwesomeStyleSequence.inspectList(as: .escaped))
 - Swift 6.0+
 - iOS 13.0+ / macOS 10.15+ / tvOS 13.0+ / watchOS 6.0+
 
+## Contributing
+
+Contributions are welcome! Please read the [contributing guide](CONTRIBUTING.md) before submitting a pull request.
+
 ## License
 
-This project is available under the MIT license. See the LICENSE file for more info.
-
-## Contributing
-This project is still in early development. Contributions or suggestions are welcome, but please do not use this library in any projects yet.
+Licensed under the Apache License v2.0. See [LICENSE.txt](LICENSE.txt) for details.
